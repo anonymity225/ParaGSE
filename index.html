@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ParaGSE</title>
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+  rel="stylesheet">
+
+  <link rel="stylesheet" href="css/bulma.min.css">
+  <link rel="stylesheet" href="css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="css/bulma-slider.min.css">
+  <link rel="stylesheet" href="css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="js/fontawesome.all.min.js"></script>
+  <script src="js/bulma-carousel.min.js"></script>
+  <script src="js/bulma-slider.min.js"></script>
+  <script src="js/index.js"></script>
+</head>
+<body>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">ParaGSE: Parallel Generative Speech Enhancement with Group-Vector-Quantization-based Neural Speech Codec</h1>
+            <div class="is-size-5 publication-authors">
+              <!-- Paper authors -->
+              
+              <!-- <span class="author-block">
+                <a>Ye-Xin Lu</a>,</span>
+              <span class="author-block">
+                <a href="http://staff.ustc.edu.cn/~yangai" target="_blank">Yang Ai</a>,</span>
+              <span class="author-block">
+                <a>Zheng-Yan Sheng</a>,</span>
+              <span class="author-block">
+                <a href="http://staff.ustc.edu.cn/~zhling" target="_blank">Zhen-Hua Ling</a>,</span> -->
+            </div>
+
+            <!-- <div class="is-size-5 publication-authors">
+              <span class="author-block">National Engineering Research Center of Speech and Language Information Processing <br> University of Science and Technology of China<br></span>
+            </div> -->
+
+            <!-- <div class="column has-text-centered">
+              <div class="publication-links"> -->
+                <!--                   Code Link. -->
+                <!-- <span class="link-block">
+                  <a href="https://github.com/yxlu-0102/AP-BWE" target="_blank"
+                      class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+                </span> -->
+                <!--                   ArXiv Link -->
+                <!-- <span class="link-block">
+                  <a href="" target="_blank"
+                      class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>Paper</span>
+                  </a>
+                </span>
+              </div>
+            </div> -->
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Paper abstract -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Recently, generative speech enhancement has garnered considerable interest; however, existing approaches are hindered by excessive complexity, limited efficiency, and suboptimal speech quality. 
+            To overcome these challenges, this paper proposes a novel parallel generative speech enhancement (ParaGSE) framework that leverages a group vector quantization (GVQ)-based neural speech codec.
+            The GVQ-based codec adopts separate VQs to produce mutually independent tokens, enabling efficient parallel token prediction in ParaGSE. 
+            Specifically, ParaGSE leverages the GVQ-based codec to encode degraded speech into distinct tokens, predicts the corresponding clean tokens through parallel branches conditioned on degraded spectral features, and ultimately reconstructs clean speech via the codec decoder. 
+            Experimental results demonstrate that ParaGSE consistently produces superior enhanced speech compared to both discriminative and generative baselines, under a wide range of distortions including noise, reverberation, band-limiting, and their mixtures. 
+            Furthermore, empowered by parallel computation in token prediction, ParaGSE attains about a 1.5-fold improvement in generation efficiency on CPU compared with serial generative speech enhancement approaches.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End paper abstract -->
+
+<br>
+<section class="hero">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-centered">
+        <h2 class="title is-3">I. Denoising</h2>
+      </div>
+    </div>
+  </div>
+  <br>
+  <table align = "center" style="text-align: center;">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-centered">
+          <h3 class="title is-5">Sample 1</h3>
+        </div>
+      </div>
+    </div>
+    <br>
+    <tr>
+      <td style="text-align: center;"><b>Noisy Speech</b></th>
+      <td style="text-align: center;"><b>Clean Speech</b></th>
+      <td style="text-align: center;"><b>DEMUCS</b></th>
+      <td style="text-align: center;"><b>CMGAN</b></th>
+      <td style="text-align: center;"><b>MP-SENet</b></th>
+      <td style="text-align: center;"><b>Genhancer</b></th>
+      <td style="text-align: center;"><b>ParaGSE</b></th>
+    </tr>
+
+    <tr>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="wavs/noisy_n/p232_002.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="wavs/clean/p232_002.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="wavs/demucs_n/p232_002.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="wavs/cmgan_n/p232_002.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="wavs/mp_n/p232_002.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="wavs/genhancer_n/p232_002.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="wavs/ParaGSE_n/p232_002.wav" type="audio/wav"></audio></td>
+    </tr>
+  </table>
+  <br>
+  <table align = "center" style="text-align: center;">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-centered">
+          <h3 class="title is-5">Sample 2</h3>
+        </div>
+      </div>
+    </div>
+    <br>
+    <tr>
+      <td style="text-align: center;"><b>Noisy Speech</b></th>
+      <td style="text-align: center;"><b>Clean Speech</b></th>
+      <td style="text-align: center;"><b>DEMUCS</b></th>
+      <td style="text-align: center;"><b>CMGAN</b></th>
+      <td style="text-align: center;"><b>MP-SENet</b></th>
+      <td style="text-align: center;"><b>Genhancer</b></th>
+      <td style="text-align: center;"><b>ParaGSE</b></th>
+    </tr>
+
+    <tr>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="wavs/noisy_n/p232_007.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="wavs/clean/p232_007.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="wavs/demucs_n/p232_007.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="wavs/cmgan_n/p232_007.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="wavs/mp_n/p232_007.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="wavs/genhancer_n/p232_007.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="wavs/ParaGSE_n/p232_007.wav" type="audio/wav"></audio></td>
+    </tr>
+    </table>
+    <br>
+    <table align = "center" style="text-align: center;">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-centered">
+            <h2 class="title is-5">Sample 3</h2>
+          </div>
+        </div>
+      </div>
+      <br>
+      <tr>
+      <td style="text-align: center;"><b>Noisy Speech</b></th>
+      <td style="text-align: center;"><b>Clean Speech</b></th>
+      <td style="text-align: center;"><b>DEMUCS</b></th>
+      <td style="text-align: center;"><b>CMGAN</b></th>
+      <td style="text-align: center;"><b>MP-SENet</b></th>
+      <td style="text-align: center;"><b>Genhancer</b></th>
+      <td style="text-align: center;"><b>ParaGSE</b></th>
+    </tr>
+
+    <tr>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="wavs/noisy_n/p232_009.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="wavs/clean/p232_009.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="wavs/demucs_n/p232_009.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="wavs/cmgan_n/p232_009.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="wavs/mp_n/p232_009.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="wavs/genhancer_n/p232_009.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="wavs/ParaGSE_n/p232_009.wav" type="audio/wav"></audio></td>
+    </tr>
+      </table>
+</section>
+
+<hr>
+<section class="hero">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-centered">
+        <h2 class="title is-3">II. Dereverberation</h2>
+      </div>
+    </div>
+  </div>
+  <br>
+  <table align = "center" style="text-align: center;">
+
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-centered">
+          <h2 class="title is-5">Sample 1</h2>
+        </div>
+      </div>
+    </div>
+    <br>
+    <tr>
+      <td style="text-align: center;"><b>Noisy Speech</b></th>
+      <td style="text-align: center;"><b>Clean Speech</b></th>
+      <td style="text-align: center;"><b>DEMUCS</b></th>
+      <td style="text-align: center;"><b>CMGAN</b></th>
+      <td style="text-align: center;"><b>MP-SENet</b></th>
+      <td style="text-align: center;"><b>Genhancer</b></th>
+      <td style="text-align: center;"><b>ParaGSE</b></th>
+    </tr>
+
+    <tr>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="wavs/noisy_r/p232_002.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="wavs/clean/p232_002.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="wavs/demucs_r/p232_002.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="wavs/cmgan_r/p232_002.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="wavs/mp_r/p232_002.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="wavs/genhancer_r/p232_002.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="wavs/ParaGSE_r/p232_002.wav" type="audio/wav"></audio></td>
+    </tr>
+  </table>
+  <br>
+  <table align = "center" style="text-align: center;">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-centered">
+          <h3 class="title is-5">Sample 2</h3>
+        </div>
+      </div>
+    </div>
+    <br>
+    <tr>
+      <td style="text-align: center;"><b>Noisy Speech</b></th>
+      <td style="text-align: center;"><b>Clean Speech</b></th>
+      <td style="text-align: center;"><b>DEMUCS</b></th>
+      <td style="text-align: center;"><b>CMGAN</b></th>
+      <td style="text-align: center;"><b>MP-SENet</b></th>
+      <td style="text-align: center;"><b>Genhancer</b></th>
+      <td style="text-align: center;"><b>ParaGSE</b></th>
+    </tr>
+
+    <tr>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="wavs/noisy_r/p232_007.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="wavs/clean/p232_007.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="wavs/demucs_r/p232_007.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="wavs/cmgan_r/p232_007.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="wavs/mp_r/p232_007.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="wavs/genhancer_r/p232_007.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="wavs/ParaGSE_r/p232_007.wav" type="audio/wav"></audio></td>
+    </tr>
+    </table>
+    <br>
+    <table align = "center" style="text-align: center;">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-centered">
+            <h2 class="title is-5">Sample 3</h2>
+          </div>
+        </div>
+      </div>
+      <br>
+      <tr>
+      <td style="text-align: center;"><b>Noisy Speech</b></th>
+      <td style="text-align: center;"><b>Clean Speech</b></th>
+      <td style="text-align: center;"><b>DEMUCS</b></th>
+      <td style="text-align: center;"><b>CMGAN</b></th>
+      <td style="text-align: center;"><b>MP-SENet</b></th>
+      <td style="text-align: center;"><b>Genhancer</b></th>
+      <td style="text-align: center;"><b>ParaGSE</b></th>
+    </tr>
+
+    <tr>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="wavs/noisy_r/p232_009.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="wavs/clean/p232_009.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="wavs/demucs_r/p232_009.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="wavs/cmgan_r/p232_009.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="wavs/mp_r/p232_009.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="wavs/genhancer_r/p232_009.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="wavs/ParaGSE_r/p232_009.wav" type="audio/wav"></audio></td>
+    </tr>
+
+  </table>
+</section>
+<hr>
+<section class="hero">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-centered">
+        <h2 class="title is-3">III. Mixed Distortion Suppression</h2>
+      </div>
+    </div>
+  </div>
+  <br>
+  <table align = "center" style="text-align: center;">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-centered">
+          <h2 class="title is-5">Sample 1</h2>
+        </div>
+      </div>
+    </div>
+    <br>
+    <tr>
+      <td style="text-align: center;"><b>Noisy Speech</b></th>
+      <td style="text-align: center;"><b>Clean Speech</b></th>
+      <td style="text-align: center;"><b>DEMUCS</b></th>
+      <td style="text-align: center;"><b>CMGAN</b></th>
+      <td style="text-align: center;"><b>MP-SENet</b></th>
+      <td style="text-align: center;"><b>Genhancer</b></th>
+      <td style="text-align: center;"><b>ParaGSE</b></th>
+    </tr>
+
+    <tr>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="wavs/noisy_rne/p232_002.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="wavs/clean/p232_002.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="wavs/demucs_rne/p232_002.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="wavs/cmgan_rne/p232_002.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="wavs/mp_rne/p232_002.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="wavs/genhancer_rne/p232_002.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="wavs/ParaGSE_rne/p232_002.wav" type="audio/wav"></audio></td>
+    </tr>
+  </table>
+  <br>
+  <table align = "center" style="text-align: center;">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-centered">
+          <h3 class="title is-5">Sample 2</h3>
+        </div>
+      </div>
+    </div>
+    <br>
+    <tr>
+      <td style="text-align: center;"><b>Noisy Speech</b></th>
+      <td style="text-align: center;"><b>Clean Speech</b></th>
+      <td style="text-align: center;"><b>DEMUCS</b></th>
+      <td style="text-align: center;"><b>CMGAN</b></th>
+      <td style="text-align: center;"><b>MP-SENet</b></th>
+      <td style="text-align: center;"><b>Genhancer</b></th>
+      <td style="text-align: center;"><b>ParaGSE</b></th>
+    </tr>
+
+    <tr>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="wavs/noisy_rne/p232_007.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="wavs/clean/p232_007.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="wavs/demucs_rne/p232_007.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="wavs/cmgan_rne/p232_007.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="wavs/mp_rne/p232_007.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="wavs/genhancer_rne/p232_007.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="wavs/ParaGSE_rne/p232_007.wav" type="audio/wav"></audio></td>
+    </tr>
+    </table>
+    <br>
+    <table align = "center" style="text-align: center;">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-centered">
+            <h2 class="title is-5">Sample 3</h2>
+          </div>
+        </div>
+      </div>
+      <br>
+      <tr>
+      <td style="text-align: center;"><b>Noisy Speech</b></th>
+      <td style="text-align: center;"><b>Clean Speech</b></th>
+      <td style="text-align: center;"><b>DEMUCS</b></th>
+      <td style="text-align: center;"><b>CMGAN</b></th>
+      <td style="text-align: center;"><b>MP-SENet</b></th>
+      <td style="text-align: center;"><b>Genhancer</b></th>
+      <td style="text-align: center;"><b>ParaGSE</b></th>
+    </tr>
+
+    <tr>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="wavs/noisy_rne/p232_009.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="wavs/clean/p232_009.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="wavs/demucs_rne/p232_009.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="wavs/cmgan_rne/p232_009.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="wavs/mp_rne/p232_009.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="wavs/genhancer_rne/p232_009.wav" type="audio/wav"></audio></td>
+      <td><audio controls="" style='display: inline-block; width: 200px; height: 50px;'><source src="wavs/ParaGSE_rne/p232_009.wav" type="audio/wav"></audio></td>
+    </tr>
+        </table>
+        <br>
+</section>
+
+<!-- Statcounter tracking code -->
+  
+<!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
+
+    <!-- End of Statcounter Code -->
+
+  </body>
+  </html>
